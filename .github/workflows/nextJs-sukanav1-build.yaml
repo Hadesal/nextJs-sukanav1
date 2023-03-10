@@ -17,7 +17,7 @@ env:
   DEPLOYMENT_FOLDER: ./
 
 jobs:
-# Please do not rename this job
+  # Please do not rename this job
   build-project:
     name: build nextJs-sukanav1
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          submodules: 'recursive'
+          submodules: "recursive"
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -39,9 +39,8 @@ jobs:
         run: |
           npm ci --only=production
           npm run build
-          npm start
 
-# Please do not touch the following action
+      # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
         with:

@@ -8,19 +8,15 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: ""
         required: true
         type: string
-      project-id:
-        description: ""
+      project-id:z
         required: true
         type: string
       branch-id:
-        description: ""
         required: true
         type: string
       deployment-ids:
-        description: ""
         require: true
         type: string
   push:

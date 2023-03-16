@@ -50,5 +50,6 @@ export default async function newImmobile(req, res) {
     return;
   } else {
     res.json({ message: "method not allowed" });
+    return;
   }
 }

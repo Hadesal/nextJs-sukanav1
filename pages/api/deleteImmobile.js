@@ -1,4 +1,4 @@
-import immoModel from "@/models/immoModel";
+import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
 
 export default async function deleteImmobile(req, res) {
@@ -6,7 +6,7 @@ export default async function deleteImmobile(req, res) {
     await connectMongo();
     const { projectNumber } = req.body;
     if (projectNumber) {
-      const deleteReq = await immoModel.deleteOne({ projectNumber });
+      const deleteReq = await immobileModel.deleteOne({ projectNumber });
       if (deleteReq.deletedCount > 0) {
         res.json({ message: "Deleted successfully" });
         return;

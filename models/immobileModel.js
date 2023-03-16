@@ -1,8 +1,8 @@
 const { Schema, model, models } = require("mongoose");
 
-const immoSchema = new Schema({
+const immobileSchema = new Schema({
   projectNumber: { type: Number, required: true, unique: true },
-  immoType: String,
+  immobileType: String,
   details: String,
   completionOfBuild: Date,
   livingSpace: Number,
@@ -19,5 +19,6 @@ const immoSchema = new Schema({
   zib: Number,
 });
 
-const immoModel = models.SukanaImmobile || model("SukanaImmobile", immoSchema);
-export default immoModel;
+const immobileModel =
+  models.SukanaImmobile || model("SukanaImmobile", immobileSchema);
+export default immobileModel;

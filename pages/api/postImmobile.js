@@ -1,4 +1,4 @@
-import immoModel from "@/models/immoModel";
+import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
 
 export default async function newImmobile(req, res) {
@@ -19,7 +19,7 @@ export default async function newImmobile(req, res) {
       images,
       zib,
     } = req.body;
-    const found = await immoModel.findOne({ projectNumber });
+    const found = await immobileModel.findOne({ projectNumber });
     if (found) {
       res.json({ message: "this project does already exist" });
       return;
@@ -45,7 +45,7 @@ export default async function newImmobile(req, res) {
         return;
       }
     }
-    await immoModel.create(immobile);
+    await immobileModel.create(immobile);
     res.status(201).json(immobile);
     return;
   } else {

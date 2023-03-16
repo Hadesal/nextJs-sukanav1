@@ -2,12 +2,12 @@ import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const { sort } = req.body;
+    const { filterKey, filterValue } = req.body;
 
     connectMongo();
     const data = await immobileModel
-      .find({})
-      .sort({ projectNumber: sort ? sort : "asc" });
+      .find({ [filterKey]: filterValue })
+      .sort({ projectNumber: "asc" });
     res.status(200).json(data);
     return;
   } else {

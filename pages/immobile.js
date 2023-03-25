@@ -19,6 +19,7 @@ export default function Immobile() {
           <div key={index}>
             {console.log(value)}
             <div>
+              Images:
               {value.images?.map((value, index) => (
                 <div key={index}>
                   <Image
@@ -31,18 +32,18 @@ export default function Immobile() {
               ))}
             </div>
             <div>
-              <p>{value.projectNumber}</p>
+              <p>Project Number: {value.projectNumber}</p>
             </div>
-            <div>{value.immobileType}</div>
-            <div>{value.details}</div>
-            <div>{value.completionOfBuild}</div>
-            <div>{value.livingSpace}</div>
-            <div>{value.price}</div>
-            <div>{value.location}</div>
-            <div>{value.city}</div>
-            <div>{value.address}</div>
-            <div>{value.rooms}</div>
-            <div>{value.zib}</div>
+            <div>ImmobileType: {value.immobileType}</div>
+            <div>details: {value.details}</div>
+            <div>Completion of Build:{value.completionOfBuild}</div>
+            <div>living space: {value.livingSpace}</div>
+            <div>price: {value.price}</div>
+            <div>location: {value.location}</div>
+            <div>city: {value.city}</div>
+            <div>address: {value.address}</div>
+            <div>rooms: {value.rooms}</div>
+            <div>zib: {value.zib}</div>
           </div>
         ))}
       </div>

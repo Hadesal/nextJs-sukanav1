@@ -2,8 +2,8 @@ import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const { filterKey, filterValue } = req.body;
-
+    const { filterObject } = req.body;
+    const { filterKey, filterValue } = filterObject;
     connectMongo();
     const data = await immobileModel
       .find({ [filterKey]: filterValue })

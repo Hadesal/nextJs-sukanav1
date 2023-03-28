@@ -4,7 +4,7 @@ import { connectMongo } from "@/utils/connectMongo";
 export default async function deleteImmobile(req, res) {
   if (req.method == "DELETE") {
     await connectMongo();
-    const { projectNumber } = req.body;
+    const { projectNumber } = req.query;
     if (projectNumber) {
       const deleteReq = await immobileModel.deleteOne({ projectNumber });
       if (deleteReq.deletedCount > 0) {

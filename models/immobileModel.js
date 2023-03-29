@@ -3,7 +3,12 @@ const { Schema, model, models } = require("mongoose");
 const immobileSchema = new Schema({
   projectNumber: { type: Number, required: true, unique: true },
   immobileType: String,
-  details: String,
+  details: {
+    bedRooms: { type: Number },
+    bathRooms: { type: Number },
+    size: { type: Number },
+    description: { type: String },
+  },
   completionOfBuild: Date,
   livingSpace: Number,
   price: Number,

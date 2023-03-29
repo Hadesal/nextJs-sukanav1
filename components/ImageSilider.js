@@ -8,7 +8,7 @@ const ImageSlider = (props) => {
   const { images } = props;
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -17,13 +17,8 @@ const ImageSlider = (props) => {
   return (
     <Slider {...settings}>
       {images?.map((image, index) => (
-        <div key={index}>
-          <Image
-            src={image}
-            alt={`Slide ${index + 1}`}
-            width={315}
-            height={255}
-          />
+        <div className="object-cover bg-red h-250 w-250" key={index}>
+          <Image src={image} alt={`Slide ${index + 1}`} fill />
         </div>
       ))}
     </Slider>

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;800&display=swap");
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   box-sizing: border-box;
 }
@@ -225,7 +227,12 @@ option {
   object-position: center;
   height: 400px;
 }
-
+textarea {
+  color: black;
+}
+input {
+  color: #1a1a1a;
+}
 .animation {
   margin-top: -4px;
   height: 1rem;
@@ -246,28 +253,40 @@ option {
   }
 }
 
-.examples{
+.examples {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-self:center;
+  align-self: center;
   margin-top: 2rem;
 }
 
-button{
+button {
   color: #1a1a1a;
 }
 
-.link-container{
+.link-container {
   display: flex;
   justify-content: center;
 }
 
-.card-grid-home{
+.card-grid-home {
   margin-top: 4rem;
   display: grid;
   padding-inline: 10rem;
   padding-bottom: 10rem;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  font-size: 4rem;
+  color: #0070f3;
 }

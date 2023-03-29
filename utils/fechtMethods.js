@@ -26,11 +26,8 @@ export const getFilteredImmobile = async (filterObject) => {
 export const postImmobile = async (immobileObject) => {
   const response = await fetch("http://localhost:3000/api/postImmobile", {
     method: "POST",
-    body: immobileObject,
-    headers: {
-      "Content-Type": "application/json",
-      accept: "application/json",
-    },
+    body: JSON.stringify(immobileObject),
+    headers: { "Content-Type": "application/json" },
   });
   return await response.json();
 };

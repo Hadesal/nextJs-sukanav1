@@ -28,7 +28,7 @@ export default function Login() {
     <>
       <div>
         <form onSubmit={handleLogin}>
-          <label>
+        <div className="input-field">
             Email:
             <input
               type={"email"}
@@ -38,8 +38,8 @@ export default function Login() {
                 setLoginData({ ...loginData, email: e.target.value })
               }
             />
-          </label>
-          <label>
+          </div>
+          <div className="input-field">
             Password:
             <input
               type={"password"}
@@ -49,8 +49,8 @@ export default function Login() {
                 setLoginData({ ...loginData, password: e.target.value })
               }
             />
-          </label>
-          <button type="submit">Login</button>
+          </div>
+          <button type="submit" className="btn">Login</button>
         </form>
         {errorMessage && <p>{errorMessage}</p>}
       </div>

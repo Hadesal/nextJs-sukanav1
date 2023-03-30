@@ -25,11 +25,12 @@ export default function AddNewImmobile() {
 
   return (
     <>
+    <h1 className="header-form">Create new asset</h1>
       <div>
         <ImmobileForm />
       </div>
-      <div>
-        <button onClick={handleLogout}>logout</button>
+      <div className="center-btn">
+        <button onClick={handleLogout} className="logout">logout</button>
       </div>
     </>
   );

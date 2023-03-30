@@ -1,122 +1,134 @@
-import { UilLocationPoint } from "@iconscout/react-unicons";
-import { UilBedDouble } from "@iconscout/react-unicons";
-import { UilBath } from "@iconscout/react-unicons";
-import { UilArrowResizeDiagonal } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
-import ImageSlider from "@/components/ImageSilider";
 import { getImmobile } from "@/utils/fechtMethods";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
+
+import Image from "next/image";
+import house2 from "./assets/house_2.jpg";
+import card from "./assets/card.jpg";
 
 export default function Home() {
   const [allImmobile, setAllImmobile] = useState([{}]);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-  const { name } = router.query;
 
   useEffect(() => {
-    console.log(name);
-    getImmobile().then((data) => {
-      setAllImmobile(data);
-      setLoading(false);
-    });
+    getImmobile().then((data) => setAllImmobile(data));
   }, []);
 
   return (
     <>
-      {loading ? (
-        <div className="spinner-container">
-          <FontAwesomeIcon icon={faSpinner} className="spinner" spin />
-        </div>
-      ) : (
-        <>
-          <div className="hero-container">
-            <div className="hero-left">
-              <h2>About us</h2>
-              <p className="about-text">
-                Welcome to Surkana! Whether you're in the market for a new home,
-                looking to sell your current property, or interested in
-                investing in real estate, we're here to help. Our website is
-                your one-stop-shop for all things property-related, with a wide
-                range of listings and resources to help you make informed
-                decisions.
-                <br />
-                <br />
-                We understand that buying or selling a property can be a
-                daunting process, which is why we've made it our mission to
-                provide a user-friendly platform that's easy to navigate. Our
-                listings are comprehensive and up-to-date, so you can be sure
-                you're getting the most accurate information possible. In
-                addition to our listings, we also offer a range of resources to
-                help you navigate the property market.
-                <br />
-                <br />
-                From guides on buying and selling, to tips on interior design
-                and renovation, we're here to provide you with all the
-                information you need to make the most of your property
-                investment. Thank you for choosing our website as your go-to
-                source for property information.
-              </p>
-            </div>
-            <div className="hero-right"></div>
+      <header className="header" id="header">
+        <nav className="nav">
+          <a href="#" className="nav__logo">
+            SUKANA
+          </a>
+          <div className="nav__menu" id="nav-menu">
+            <ul className="nav__list">
+              <li className="nav__item">
+                <a href="#home" className="nav__link">
+                  Home
+                </a>
+              </li>
+              <li className="nav__item">
+                <a href="#about" className="nav__link">
+                  About
+                </a>
+              </li>
+
+              <li className="nav__item">
+              <Link
+                  href={{
+                    pathname: "/immobile",
+                  }}
+                >
+             <p className="nav__link">
+                  Immobiles
+                </p>
+                </Link>
+              
+              </li>
+            </ul>
           </div>
-          <div className="animation"></div>
 
-          <div className="examples">
-            <div className="link-container">
-              <Link href={"/immobile"}>Our Properties</Link>
-            </div>
+          <div className="nav__toggle" id="nav-toggle">
+            <i className="ri-function-line"></i>
+          </div>
+        </nav>
+      </header>
 
-            <div className="card-grid-home">
-              {allImmobile?.map((immobile, index) => {
-                return (
-                  <div key={index} className="card card-shadow">
-                    <div key={index} className="card-header card-image">
-                      <ImageSlider images={immobile?.images} />
-                    </div>
+      <main class="main">
+        {/* <!--==================== HOME ====================--> */}
+        <section className="home" id="home">
+          <Image src={house2} alt="" className="home__img" />
 
-                    <div className="card-details">
-                      <div className="street-container">
-                        <p className="icon">{<UilLocationPoint />} </p>
-                        {immobile.location}
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <div>{immobile.title}</div>
-                      <div className="card-rooms">
-                        <p className="card-rooms">
-                          <UilArrowResizeDiagonal /> {immobile?.details?.size}
-                        </p>
-                        <p className="card-rooms">
-                          <UilBedDouble /> {immobile?.details?.bedRooms}
-                        </p>
-                        <p className="card-rooms">
-                          <UilBath /> {immobile?.details?.bathRooms}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="card-footer">
-                      <Link
-                        href={{
-                          pathname: "/immobiledetails",
-                          query: immobile,
-                        }}
-                      >
-                        <button className="btn">Details</button>
-                      </Link>
-                      <button className="btn btn-outline">
-                        Contact Seller
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+          <div className="home__container container grid">
+            <div className="home__data">
+              <h1 className="home__data-title">
+                Explore The <br /> Best{" "}
+                <b>
+                  Beautiful <br /> Houses
+                </b>
+              </h1>
+              <Link
+                  href={{
+                    pathname: "/immobile",
+                  }}
+                >
+                  <button className="button"> Explore</button>
+                </Link>
             </div>
           </div>
-        </>
-      )}
+        </section>
+
+        {/* <!--==================== ABOUT ====================--> */}
+
+        <section className="about section" id="about">
+          <div className="about-center">
+            <div className="grid-about">
+              <div>
+                <div className="about__data">
+                  <h2 className="section__title about__title">
+                    More Information <br /> About The Best Beaches
+                  </h2>
+                  <p className="about__description">
+                    Welcome to Surkana! Whether you're in the market for a new
+                    home, looking to sell your current property, or interested
+                    in investing in real estate, we're here to help. Our website
+                    is your one-stop-shop for all things property-related, with
+                    a wide range of listings and resources to help you make
+                    informed decisions.
+                    <br />
+                    <br />
+                    We understand that buying or selling a property can be a
+                    daunting process, which is why we've made it our mission to
+                    provide a user-friendly platform that's easy to navigate.
+                    Our listings are comprehensive and up-to-date, so you can be
+                    sure you're getting the most accurate information possible.
+                    In addition to our listings, we also offer a range of
+                    resources to help you navigate the property market.
+                    <br />
+                    <br />
+                    From guides on buying and selling, to tips on interior
+                    design and renovation, we're here to provide you with all
+                    the information you need to make the most of your property
+                    investment. Thank you for choosing our website as your go-to
+                    source for property information.
+                  </p>
+                  <Link
+                  href={{
+                    pathname: "/immobile",
+                  }}
+                >
+                  <button className="button">Find your Home</button>
+                </Link>
+        
+                </div>
+              </div>
+              <div>
+                <Image src={card} alt="contact" className="contact" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }

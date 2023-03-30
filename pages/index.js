@@ -1,58 +1,14 @@
-import { useState, useEffect } from "react";
-import { getImmobile } from "@/utils/fechtMethods";
 import Link from "next/link";
 
 import Image from "next/image";
 import house2 from "./assets/house_2.jpg";
 import card from "./assets/card.jpg";
+import NavBar from "@/components/Navbar";
 
 export default function Home() {
-  const [allImmobile, setAllImmobile] = useState([{}]);
-
-  useEffect(() => {
-    getImmobile().then((data) => setAllImmobile(data));
-  }, []);
-
   return (
     <>
-      <header className="header" id="header">
-        <nav className="nav">
-          <a href="#" className="nav__logo">
-            SUKANA
-          </a>
-          <div className="nav__menu" id="nav-menu">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <a href="#home" className="nav__link">
-                  Home
-                </a>
-              </li>
-              <li className="nav__item">
-                <a href="#about" className="nav__link">
-                  About
-                </a>
-              </li>
-
-              <li className="nav__item">
-              <Link
-                  href={{
-                    pathname: "/immobile",
-                  }}
-                >
-             <p className="nav__link">
-                  Immobiles
-                </p>
-                </Link>
-              
-              </li>
-            </ul>
-          </div>
-
-          <div className="nav__toggle" id="nav-toggle">
-            <i className="ri-function-line"></i>
-          </div>
-        </nav>
-      </header>
+      <NavBar />
 
       <main class="main">
         {/* <!--==================== HOME ====================--> */}
@@ -68,12 +24,12 @@ export default function Home() {
                 </b>
               </h1>
               <Link
-                  href={{
-                    pathname: "/immobile",
-                  }}
-                >
-                  <button className="button"> Explore</button>
-                </Link>
+                href={{
+                  pathname: "/immobile",
+                }}
+              >
+                <button className="button"> Explore</button>
+              </Link>
             </div>
           </div>
         </section>
@@ -113,13 +69,12 @@ export default function Home() {
                     source for property information.
                   </p>
                   <Link
-                  href={{
-                    pathname: "/immobile",
-                  }}
-                >
-                  <button className="button">Find your Home</button>
-                </Link>
-        
+                    href={{
+                      pathname: "/immobile",
+                    }}
+                  >
+                    <button className="button">Find your Home</button>
+                  </Link>
                 </div>
               </div>
               <div>

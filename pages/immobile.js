@@ -6,6 +6,7 @@ import { UilBedDouble } from "@iconscout/react-unicons";
 import { UilBath } from "@iconscout/react-unicons";
 import { UilArrowResizeDiagonal } from "@iconscout/react-unicons";
 import Link from "next/link";
+import NavBar from "@/components/Navbar";
 
 export default function Immobile() {
   const [allImmobile, setAllImmobile] = useState([{}]);
@@ -16,6 +17,7 @@ export default function Immobile() {
 
   return (
     <>
+      <NavBar />
       <div className="card-grid-home">
         {allImmobile?.map((immobile, index) => {
           return (
@@ -53,7 +55,11 @@ export default function Immobile() {
                 >
                   <button className="btn">Details</button>
                 </Link>
-                <button className="btn btn-outline">Contact Seller</button>
+                <Link href={"/#about"}>
+                  <button className="btn btn-outline">
+                    Contact Information
+                  </button>
+                </Link>
               </div>
             </div>
           );

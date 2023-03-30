@@ -1,3 +1,4 @@
+import NavBar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -9,6 +10,7 @@ export default function Immobiledetails() {
   }, [immobile]);
   return (
     <>
+      <NavBar />
       <div>{immobile.city}</div>
     </>
   );

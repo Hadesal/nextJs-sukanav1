@@ -28,7 +28,7 @@ export default function Login() {
     <>
       <div>
         <form onSubmit={handleLogin}>
-        <div className="input-field">
+          <div className="input-field">
             Email:
             <input
               type={"email"}
@@ -50,7 +50,9 @@ export default function Login() {
               }
             />
           </div>
-          <button type="submit" className="btn">Login</button>
+          <button type="submit" className="btn">
+            Login
+          </button>
         </form>
         {errorMessage && <p>{errorMessage}</p>}
       </div>

@@ -8,12 +8,10 @@ export default async function handler(req, res) {
     const data = await immobileModel
       .find({ [filterKey]: filterValue })
       .sort({ projectNumber: "asc" });
-    res.status(200).json(data);
-    return;
+    return res.status(200).json(data);
   } else {
-    res.json({
+    return res.json({
       message: "method is not allowed please make sure to make a get request",
     });
-    return;
   }
 }

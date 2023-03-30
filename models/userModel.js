@@ -9,4 +9,4 @@ const userSchema = new Schema({
 
 const userModel = models.SukanaUsers || model("SukanaUsers", userSchema);
 
-export default userSchema;
+export default userModel;

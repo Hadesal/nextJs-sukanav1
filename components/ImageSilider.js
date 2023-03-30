@@ -12,13 +12,22 @@ const ImageSlider = (props) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    useCSS: 1,
+    arrows: 1,
+    autoplay: 1,
   };
 
   return (
-    <Slider {...settings}>
+    <Slider className="slider" {...settings}>
       {images?.map((image, index) => (
-        <div className="object-cover bg-red h-250 w-250" key={index}>
-          <Image src={image} alt={`Slide ${index + 1}`} fill />
+        <div className="image_container" key={index}>
+          <Image
+            className="slide_image"
+            src={image}
+            alt={`Slide ${index + 1}`}
+            width={330}
+            height={250}
+          />
         </div>
       ))}
     </Slider>

@@ -8,13 +8,16 @@ import { getImmobile } from "@/utils/fechtMethods";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { set } from "mongoose";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [allImmobile, setAllImmobile] = useState([{}]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { name } = router.query;
 
   useEffect(() => {
+    console.log(name);
     getImmobile().then((data) => {
       setAllImmobile(data);
       setLoading(false);
@@ -95,7 +98,14 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="card-footer">
-                      <button className="btn">Details</button>
+                      <Link
+                        href={{
+                          pathname: "/immobiledetails",
+                          query: immobile,
+                        }}
+                      >
+                        <button className="btn">Details</button>
+                      </Link>
                       <button className="btn btn-outline">
                         Contact Seller
                       </button>

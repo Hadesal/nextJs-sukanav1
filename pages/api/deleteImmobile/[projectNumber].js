@@ -8,18 +8,15 @@ export default async function deleteImmobile(req, res) {
     if (projectNumber) {
       const deleteReq = await immobileModel.deleteOne({ projectNumber });
       if (deleteReq.deletedCount > 0) {
-        res.json({ message: "Deleted successfully" });
-        return;
+        return res.json({ message: "Deleted successfully" });
       } else {
-        res.json({ message: "Couldn't delete project not found" });
-        return;
+        return res.json({ message: "Couldn't delete project not found" });
       }
     }
   } else {
-    res.json({
+    return res.json({
       message:
         "method is not allowed pleas make sure you are making a DELETE request",
     });
-    return;
   }
 }

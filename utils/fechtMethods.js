@@ -31,3 +31,13 @@ export const postImmobile = async (immobileObject) => {
   });
   return await response.json();
 };
+
+export const adminLogin = async (user) => {
+  const response = await fetch("http://localhost:3000/api/admin/login", {
+    method: "POST",
+    body: JSON.stringify(user),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  return await response.json();
+};

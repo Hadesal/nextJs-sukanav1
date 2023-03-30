@@ -9,21 +9,17 @@ export default async function newImmobile(req, res) {
     const { projectNumber } = immobileObject;
     const found = await immobileModel.findOne({ projectNumber: projectNumber });
     if (found) {
-      res.json({ message: "this project does already exist" });
-      return;
+      return res.json({ message: "this project does already exist" });
     }
 
     for (const [key, value] of Object.entries(immobileObject)) {
       if (value === null || !value) {
-        res.json({ message: `${key} is missing` });
-        return;
+        return res.json({ message: `${key} is missing` });
       }
     }
     await immobileModel.create(immobileObject);
-    res.status(201).json(immobileObject);
-    return;
+    return res.status(201).json(immobileObject);
   } else {
-    res.json({ message: "method not allowed" });
-    return;
+    return res.json({ message: "method not allowed" });
   }
 }

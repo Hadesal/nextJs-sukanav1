@@ -12,24 +12,22 @@ export default async function oneImmobile(req, res) {
         })
         .then((immobile) => {
           if (immobile) {
-            res.status(200).json(immobile);
-            return;
+            return res.status(200).json(immobile);
           } else {
-            res.json({ message: "no Project was found with this Number" });
-            return;
+            return res.json({
+              message: "no Project was found with this Number",
+            });
           }
         });
     } else {
-      res.json({
+      return res.json({
         message: "Please make sure you entered a valid projectNumber",
       });
-      return;
     }
   } else {
-    res.json({
+    return res.json({
       message:
         "Invalid request method please make sure you are making a GET request",
     });
-    return;
   }
 }

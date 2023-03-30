@@ -12,6 +12,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.image_container {
+  height: 250px;
+}
+.slide_image {
+  object-fit: fill;
+  width: fit-content;
+}
+.slider {
+}
 *,
 *::before,
 *::after {
@@ -48,7 +57,8 @@ body {
   border: 1px solid #777;
   border-radius: 0.25rem;
   overflow: hidden;
-  max-width: 600px;
+  min-width: 250px;
+  max-width: 320px;
   min-height: 520px;
   max-height: 520px;
   border: solid #bc9a00 2px;

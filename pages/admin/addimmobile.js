@@ -1,7 +1,6 @@
 import ImmobileForm from "@/components/FormComponent";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function AddNewImmobile() {
   const router = useRouter();

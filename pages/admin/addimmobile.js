@@ -20,7 +20,6 @@ export default function AddNewImmobile() {
   }, [router.asPath]);
 
   const handleLogout = () => {
-    localStorage.removeItem("isAdmin");
     router.replace({ pathname: "/admin/login" });
   };
 

@@ -15,8 +15,6 @@ export default function Login() {
     event.preventDefault();
     const response = await adminLogin(loginData);
     if (response.isAdmin) {
-      localStorage.setItem("isAdmin", response.isAdmin);
-
       router.replace({
         pathname: "/admin/addimmobile",
         query: response.is,

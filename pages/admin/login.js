@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { adminLogin } from "@/utils/fechtMethods";
+import Image from "next/image";
+import logo from "../assets/logo.png";
+import Link from "next/link";
 
 export default function Login() {
   const router = useRouter();
@@ -25,8 +28,18 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="login-container">
       <div>
+        <div className="logo-login">
+          <Link
+            href={{
+              pathname: "/",
+            }}
+            className="nav__logo"
+          >
+            <Image src={logo} alt="" className="logo-login" />
+          </Link>
+        </div>
         <form onSubmit={handleLogin}>
           <div className="input-field">
             Email:
@@ -54,8 +67,9 @@ export default function Login() {
             Login
           </button>
         </form>
+
         {errorMessage && <p>{errorMessage}</p>}
       </div>
-    </>
+    </div>
   );
 }

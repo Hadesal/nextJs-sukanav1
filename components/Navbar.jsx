@@ -5,9 +5,14 @@ const NavBar = () => (
   <>
     <header className="header" id="header">
       <nav className="nav">
-        <a href="#" className="nav__logo">
-          SUKANA
-        </a>
+      <Link
+                href={{
+                  pathname: "/",
+                }}
+                className="nav__logo"
+              >
+                SUKANA
+              </Link>
         <div className="nav__menu" id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">

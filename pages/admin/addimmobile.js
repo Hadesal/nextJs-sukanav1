@@ -1,6 +1,9 @@
 import ImmobileForm from "@/components/FormComponent";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import logo from "../assets/logo.png"
+
 
 export default function AddNewImmobile() {
   const router = useRouter();
@@ -25,7 +28,10 @@ export default function AddNewImmobile() {
 
   return (
     <>
+    <div className="add-asset-header">
     <h1 className="header-form">Create new asset</h1>
+    <Image src={logo} alt="" className="logo-asset" />
+    </div>
       <div>
         <ImmobileForm />
       </div>

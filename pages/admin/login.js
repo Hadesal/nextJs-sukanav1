@@ -54,32 +54,35 @@ export default function Login() {
         </div>
         <form onSubmit={formik.handleSubmit}>
           <div className="input-field">
-            Email:
+            <span className="input-span"> Email: </span>
             <input
               type={"email"}
               name={"email"}
               {...formik.getFieldProps("email")}
             />
-            {/* TODO:Make error red please */}
-            <span>{formik.errors.email ? formik.errors.email : null}</span>
           </div>
           <div className="input-field">
-            Password:
+            <span className="input-span"> Password: </span>
             <input
               type={"password"}
               name={"password"}
               {...formik.getFieldProps("password")}
             />
-            <span>
-              {/* TODO:Make error red please */}
-              {formik.errors.password ? formik.errors.password : null}
-            </span>
           </div>
-          {/* TODO:Make error red please */}
-          <div>{errorMessage ? errorMessage : ""}</div>
+
           <button type="submit" className="btn">
             Login
           </button>
+
+          <div className="errors-cont">
+            <span>
+              {" "}
+               {formik.errors.email ?  "email " + formik.errors.email : null}
+            </span>
+            <span>{formik.errors.password ? "password " + formik.errors.password : null}
+            </span>
+            <div>{errorMessage ? errorMessage : ""}</div>
+          </div>
         </form>
       </div>
     </div>

@@ -46,7 +46,27 @@ const ImmobileForm = () => {
     await postImmobile(immobileObject).then((message) =>
       setMessage(message.message)
     );
+    setImmobileState({
+      projectNumber: 0,
+      immobileType: "",
+      details: {
+        bedRooms: 0,
+        bathRooms: 0,
+        size: 0,
+        description: "",
+      },
+      completionOfBuild: "",
+      livingSpace: "",
+      price: 0,
+      location: "",
+      city: "",
+      address: "",
+      rooms: 0,
+      images: [],
+      zib: 0,
+    });
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>

@@ -11,7 +11,10 @@ export const getOneImmobile = async (projectNumber) => {
 };
 export const deleteOneImmobile = async (projectNumber) => {
   const response = await fetch(
-    "http://localhost:3000/api/deleteImmobile/" + projectNumber
+    "http://localhost:3000/api/deleteImmobile/" + projectNumber,
+    {
+      method: "DELETE",
+    }
   );
   return await response.json();
 };

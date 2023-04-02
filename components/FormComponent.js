@@ -47,9 +47,9 @@ const ImmobileForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-          <div className="fields">
-      <div className="input-container">
-        <div className="left-input-container">
+      <div className="fields">
+        <div className="input-container">
+          <div className="left-input-container">
             <div className="input-field">
               Project Number:
               <input
@@ -162,8 +162,8 @@ const ImmobileForm = () => {
               />
             </div>
             <button type="submit" className="btn">
-            Submit
-          </button>
+              Submit
+            </button>
           </div>
           <div className="right-input-container">
             <div className="input-field">
@@ -264,7 +264,6 @@ const ImmobileForm = () => {
               />
             </div>
           </div>
-        
         </div>
       </div>
     </form>

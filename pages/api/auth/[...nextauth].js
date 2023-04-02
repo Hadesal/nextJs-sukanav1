@@ -12,10 +12,9 @@ export const nextAuthAdmin = {
       },
       async authorize(credentials, req) {
         const response = await adminLogin(credentials);
-        console.log(response);
         const isAdmin = response.isAdmin;
         if (!isAdmin || isAdmin === undefined) {
-          return response;
+          throw Error(response.message);
         }
         return isAdmin;
       },
@@ -25,5 +24,7 @@ export const nextAuthAdmin = {
     signIn: "/admin/login",
   },
   session: { strategy: "jwt" },
+  secret: process.env.SECRET,
+  callbacks: {},
 };
 export default NextAuth(nextAuthAdmin);

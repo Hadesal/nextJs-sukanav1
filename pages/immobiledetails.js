@@ -28,7 +28,7 @@ export default function Immobiledetails() {
         ""
       ) : (
         <div>
-          <div>{immobile.projectNumber}</div>
+          <div className="test">{immobile.projectNumber}</div>
           <div>{detailsOfImmobile.size}</div>
         </div>
       )}

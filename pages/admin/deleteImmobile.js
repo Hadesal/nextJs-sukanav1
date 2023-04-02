@@ -37,10 +37,13 @@ export default function DeleteImmobile() {
         <p>......is Loading</p>
       ) : (
         <>
-          <div className="add-asset-header">
+        <div className="delete-cont">
+
             <h1 className="header-form">Delete asset</h1>
             <Image src={logo} alt="" className="logo-asset" />
-          </div>
+        </div>
+            <div className="delete-cont">
+          
           <form onSubmit={formik.handleSubmit}>
             <div className="input-field">
               Project Number:
@@ -56,6 +59,7 @@ export default function DeleteImmobile() {
               DELETE
             </button>
           </form>
+          </div>
           <div className="center-btn">
             <button onClick={handleLogout} className="logout">
               logout

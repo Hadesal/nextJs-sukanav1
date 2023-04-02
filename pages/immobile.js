@@ -108,7 +108,7 @@ export default function Immobile() {
                   <Link
                     href={{
                       pathname: "/immobiledetails",
-                      query: immobile,
+                      query: immobile.projectNumber,
                     }}
                   >
                     <button className="btn btn-Size">Details</button>

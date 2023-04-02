@@ -738,15 +738,15 @@ input[type="submit"] {
   padding-inline: 2rem;
 }
 
-.errors-cont{
+.errors-cont {
   display: flex;
   flex-direction: c;
   margin-top: 1rem;
   color: red;
 }
 
-.delete{
-  margin-left: 2rem ;
+.delete {
+  margin-left: 2rem;
 }
 /* ----------------immobiles ----------------*/
 
@@ -941,7 +941,7 @@ input[type="submit"] {
   margin-left: 2rem;
 }
 
-.delete-cont{
+.delete-cont {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -1020,4 +1020,39 @@ option {
   aspect-ratio: 16/9;
   width: 100vw;
   height: 100vh;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 0.8rem;
+  margin-top: 10rem;
+  margin-inline: 20rem;
+  padding-inline: 4rem;
+  padding-block-end: 5rem;
+  padding-block-start: 1rem;
+  background-color: black;
+}
+
+.slide_details {
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  width: 50vw;
+  height: 40vh;
+  border: solid 3px gold;
+  margin-bottom: 2rem;
+}
+
+.immo_details_field {
+  padding-inline: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.desrip-details {
+  margin-top: 2rem;
+  padding-inline: 5rem;
+  text-align: justify;
 }

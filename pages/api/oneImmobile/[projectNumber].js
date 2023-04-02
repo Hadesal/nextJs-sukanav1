@@ -1,6 +1,8 @@
 import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
-export default async function oneImmobile(req, res) {
+import cors from "micro-cors";
+
+const oneImmobile = async (req, res) => {
   if (req.method === "GET") {
     const { projectNumber } = req.query;
     await connectMongo();
@@ -30,4 +32,6 @@ export default async function oneImmobile(req, res) {
         "Invalid request method please make sure you are making a GET request",
     });
   }
-}
+};
+
+export default cors()(oneImmobile);

@@ -1,5 +1,6 @@
 import immobileModel from "@/models/immobileModel";
 import { connectMongo } from "@/utils/connectMongo";
+
 export default async function handler(req, res) {
   if (req.method === "GET") {
     const { sort } = req.body;

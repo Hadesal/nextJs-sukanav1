@@ -18,7 +18,7 @@ export default function Immobile() {
           return (
             <div key={index} className="card card-shadow">
               <div key={index} className="card-header card-image">
-                <ImageSlider images={immobile?.images} />
+                <ImageSlider images={immobile?.images} className={""} />
               </div>
 
               <div className="card-details">

@@ -114,7 +114,12 @@ body.dark-theme {
 html {
   scroll-behavior: smooth;
 }
-
+.slide_image {
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  width: 100vw;
+  height: 100vh;
+}
 .home-upper-container {
   display: flex;
   justify-content: center;

@@ -10,8 +10,9 @@ COPY . .
 
 # Install production dependencies.
 # If you add a package-lock.json, speed your build by switching to 'npm ci'.
-RUN npm ci --only=production
 
+RUN npm install 
+RUN npm ci --only=production
 RUN npm run build
 
 CMD ["npm", "start"]

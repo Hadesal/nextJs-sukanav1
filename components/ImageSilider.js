@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 const ImageSlider = (props) => {
-  const { images } = props;
+  const { images, className } = props;
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
@@ -22,7 +22,7 @@ const ImageSlider = (props) => {
       {images?.map((image, index) => (
         <div className="image_container" key={index}>
           <Image
-            className="slide_image"
+            className={className}
             src={image}
             alt={`Slide ${index + 1}`}
             width={330}

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../../public/assets/logo.png";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-
 import { useFormik } from "formik";
 import { deleteOneImmobile } from "@/utils/fechtMethods";
 

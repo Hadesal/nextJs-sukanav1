@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getImmobile } from "@/utils/fechtMethods";
+import React, { useMemo, useContext } from "react";
 import ImageSlider from "@/components/ImageSilider";
 import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilBedDouble } from "@iconscout/react-unicons";
@@ -7,20 +6,14 @@ import { UilBath } from "@iconscout/react-unicons";
 import { UilArrowResizeDiagonal } from "@iconscout/react-unicons";
 import Link from "next/link";
 import NavBar from "@/components/Navbar";
+import { ImmobileContext } from "@/contexts/ImmobileContext";
 
 export default function Immobile() {
-  const [allImmobile, setAllImmobile] = useState([{}]);
+  const { allImmobile } = useContext(ImmobileContext);
 
-  useEffect(() => {
-    getImmobile().then((data) => setAllImmobile(data));
-  }, []);
-
-  return (
-    <>
-
-      <NavBar />
-      <div className="home-upper-container">
-      <div className="card-grid-home">
+  const memorizedImmobile = useMemo(() => {
+    return (
+      <>
         {allImmobile?.map((immobile, index) => {
           return (
             <div key={index} className="card card-shadow">
@@ -52,7 +45,7 @@ export default function Immobile() {
                 <Link
                   href={{
                     pathname: "/immobiledetails",
-                    query: immobile,
+                    query: immobile.projectNumber,
                   }}
                 >
                   <button className="btn">Details</button>
@@ -66,7 +59,15 @@ export default function Immobile() {
             </div>
           );
         })}
-      </div>
+      </>
+    );
+  }, [allImmobile]);
+
+  return (
+    <>
+      <NavBar />
+      <div className="home-upper-container">
+        <div className="card-grid-home">{memorizedImmobile}</div>
       </div>
     </>
   );

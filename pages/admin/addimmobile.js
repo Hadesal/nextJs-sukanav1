@@ -2,7 +2,7 @@ import ImmobileForm from "@/components/FormComponent";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import logo from "../assets/logo.png";
+import logo from "../../public/assets/logo.png";
 import { signOut, useSession } from "next-auth/react";
 
 export default function AddNewImmobile() {

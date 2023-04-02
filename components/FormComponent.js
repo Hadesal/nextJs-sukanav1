@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { postImmobile } from "@/utils/fechtMethods";
 const ImmobileForm = () => {
+  const [message, setMessage] = useState("");
   const [immobileState, setImmobileState] = useState({
     projectNumber: 0,
     immobileType: "",
@@ -42,7 +43,9 @@ const ImmobileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const immobileObject = { immobileObject: immobileState };
-    await postImmobile(immobileObject);
+    await postImmobile(immobileObject).then((message) =>
+      setMessage(message.message)
+    );
   };
 
   return (
@@ -164,6 +167,8 @@ const ImmobileForm = () => {
             <button type="submit" className="btn">
               Submit
             </button>
+            {/* TODO:STYLE MESSAGE AND DELETE BUTTON PLEASE */}
+            <div>{message ? <span>{message}</span> : ""}</div>
           </div>
           <div className="right-input-container">
             <div className="input-field">

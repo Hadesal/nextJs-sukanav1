@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 import Image from "next/image";
-import house2 from "./assets/house_2.jpg";
-import card from "./assets/card.jpg";
+import house2 from "../public/assets/houses/house_2.jpg";
+import card from "../public/assets/card.jpg";
 import NavBar from "@/components/Navbar";
+import ImageSlider from "@/components/ImageSilider";
 
 export default function Home() {
   return (
@@ -13,8 +14,8 @@ export default function Home() {
       <main className="main">
         {/* <!--==================== HOME ====================--> */}
         <section className="home" id="home">
+          {/* <ImageSlider/> */}
           <Image src={house2} alt="" className="home__img" />
-
           <div className="home__container container grid">
             <div className="home__data">
               <h1 className="home__data-title">

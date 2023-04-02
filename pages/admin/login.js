@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
 import Image from "next/image";
-import logo from "../assets/logo.png";
+import logo from "../../public/assets/logo.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";

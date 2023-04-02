@@ -1,17 +1,39 @@
 import NavBar from "@/components/Navbar";
+import { getOneImmobile } from "@/utils/fechtMethods";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Immobiledetails() {
   const router = useRouter();
-  const immobile = router.query;
+  const projectNumber = Object.keys(router.query).join("");
+  const [immobile, setImmobile] = useState({});
+  const [detailsOfImmobile, setDetailsOfImmobile] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
-    console.log(immobile);
-  }, [immobile]);
+    getOneImmobile(projectNumber).then((res) => {
+      if (!res.message) {
+        setImmobile(res);
+        setDetailsOfImmobile(res.details);
+      } else {
+        setErrorMessage(res.message);
+      }
+    });
+    console.log(projectNumber);
+  }, [projectNumber]);
   return (
     <>
       <NavBar />
-      <div>{immobile.city}</div>
+      {!immobile ? (
+        ""
+      ) : (
+        <div>
+          <div>{immobile.projectNumber}</div>
+          <div>{detailsOfImmobile.size}</div>
+        </div>
+      )}
+
+      <div>{errorMessage ? errorMessage : ""}</div>
     </>
   );
 }

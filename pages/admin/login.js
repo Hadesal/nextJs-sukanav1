@@ -12,7 +12,7 @@ export default function Login() {
   });
   const { status } = useSession();
   const router = useRouter();
-
+  console.log(status);
   const handleLogin = async (event) => {
     event.preventDefault();
     const res = await signIn("credentials", {

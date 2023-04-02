@@ -3,7 +3,6 @@ import { adminLogin } from "@/utils/fechtMethods";
 import NextAuth from "next-auth";
 
 export const nextAuthAdmin = {
-  session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
       type: "credentials",
@@ -13,6 +12,7 @@ export const nextAuthAdmin = {
       },
       async authorize(credentials, req) {
         const response = await adminLogin(credentials);
+        console.log(response);
         const isAdmin = response.isAdmin;
         if (!isAdmin || isAdmin === undefined) {
           return response;
@@ -24,5 +24,6 @@ export const nextAuthAdmin = {
   pages: {
     signIn: "/admin/login",
   },
+  session: { strategy: "jwt" },
 };
 export default NextAuth(nextAuthAdmin);

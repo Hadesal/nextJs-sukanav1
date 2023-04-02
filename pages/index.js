@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <NavBar />
 
-      <main class="main">
+      <main className="main">
         {/* <!--==================== HOME ====================--> */}
         <section className="home" id="home">
           <Image src={house2} alt="" className="home__img" />

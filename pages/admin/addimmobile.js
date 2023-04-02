@@ -10,10 +10,7 @@ export default function AddNewImmobile() {
   const { status } = useSession();
   const session = getSession();
   console.log(session.isAdmin);
-  useEffect(() => {
-    if (status === "unauthenticated") router.replace("/admin/login");
-  }, [router, status]);
-
+  console.log(status);
   useEffect(() => {
     const handleRouteChange = (url) => {
       if (router.asPath !== url) {
@@ -28,8 +25,11 @@ export default function AddNewImmobile() {
     };
   }, [router.asPath]);
 
+  useEffect(() => {
+    if (status === "unauthenticated") router.replace("/admin/login");
+  }, [router, status]);
+
   const handleLogout = () => {
-    router.replace({ pathname: "/admin/login" });
     signOut();
   };
 
@@ -39,7 +39,10 @@ export default function AddNewImmobile() {
         <p>......is Loading</p>
       ) : (
         <>
-          <h1 className="header-form">Create new asset</h1>
+          <div className="add-asset-header">
+            <h1 className="header-form">Create new asset</h1>
+            <Image src={logo} alt="" className="logo-asset" />
+          </div>
           <div>
             <ImmobileForm />
           </div>

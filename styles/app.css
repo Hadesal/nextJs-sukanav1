@@ -1041,8 +1041,6 @@ option {
   aspect-ratio: 16/9;
   width: 50vw;
   height: 40vh;
-  border: solid 3px gold;
-  margin-bottom: 2rem;
 }
 
 .immo_details_field {
@@ -1052,7 +1050,6 @@ option {
 }
 
 .desrip-details {
-  margin-top: 2rem;
   padding-inline: 5rem;
   text-align: justify;
 }

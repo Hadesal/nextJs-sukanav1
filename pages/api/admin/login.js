@@ -1,19 +1,20 @@
 import userModel from "@/models/userModel";
 import { connectMongo } from "@/utils/connectMongo";
-import { comparePassword, hashPassword } from "@/utils/hashPassword";
+import { comparePassword } from "@/utils/hashPassword";
 
 export default async function admin(req, res) {
-  await connectMongo();
   if (req.method === "POST") {
+    await connectMongo();
+
     res.setHeader("Content-Type", "application/json");
 
     const { password, email } = req.body;
 
     if (password && email) {
       try {
-        const user = await userModel.findOne({ email: email });
-        if (user) {
-          const result = await comparePassword(password, user.password);
+        const admin = await userModel.findOne({ email: email });
+        if (admin) {
+          const result = await comparePassword(password, admin.password);
           if (result === true) {
             return res.status(200).json({ isAdmin: result });
           } else {

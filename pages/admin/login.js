@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { adminLogin } from "@/utils/fechtMethods";
 
 export default function Login() {
-  const router = useRouter();
-
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const { status } = useSession();
+  const router = useRouter();
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await adminLogin(loginData);
-    if (response.isAdmin) {
-      router.replace({
-        pathname: "/admin/addimmobile",
-        query: response.is,
-      });
-    } else {
-      setErrorMessage(response.message);
-    }
+    const res = await signIn("credentials", {
+      email: loginData.email,
+      password: loginData.password,
+      redirect: false,
+    });
   };
+  useEffect(() => {
+    if (status !== "loading" && status === "authenticated") {
+      router.replace("/admin/addimmobile");
+    }
+  }, [router, status]);
 
   return (
     <>
@@ -54,7 +54,6 @@ export default function Login() {
             Login
           </button>
         </form>
-        {errorMessage && <p>{errorMessage}</p>}
       </div>
     </>
   );

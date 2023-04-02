@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { sort } = req.body;
 
-    connectMongo();
+    await connectMongo();
     const data = await immobileModel
       .find({})
       .sort({ projectNumber: sort ? sort : "asc" });

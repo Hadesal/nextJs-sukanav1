@@ -1,9 +1,15 @@
 import ImmobileForm from "@/components/FormComponent";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-
+import { getSession, signOut, useSession } from "next-auth/react";
 export default function AddNewImmobile() {
   const router = useRouter();
+  const { status } = useSession();
+  const session = getSession();
+  console.log(session.isAdmin);
+  useEffect(() => {
+    if (status === "unauthenticated") router.replace("/admin/login");
+  }, [router, status]);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -21,17 +27,26 @@ export default function AddNewImmobile() {
 
   const handleLogout = () => {
     router.replace({ pathname: "/admin/login" });
+    signOut();
   };
 
   return (
     <>
-    <h1 className="header-form">Create new asset</h1>
-      <div>
-        <ImmobileForm />
-      </div>
-      <div className="center-btn">
-        <button onClick={handleLogout} className="logout">logout</button>
-      </div>
+      {status === "loading" ? (
+        <p>......is Loading</p>
+      ) : (
+        <>
+          <h1 className="header-form">Create new asset</h1>
+          <div>
+            <ImmobileForm />
+          </div>
+          <div className="center-btn">
+            <button onClick={handleLogout} className="logout">
+              logout
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }

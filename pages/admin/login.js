@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import logo from "../assets/logo.png";
+import Link from "next/link";
 
 export default function Login() {
   const [loginData, setLoginData] = useState({
@@ -25,8 +28,18 @@ export default function Login() {
   }, [router, status]);
 
   return (
-    <>
+    <div className="login-container">
       <div>
+        <div className="logo-login">
+          <Link
+            href={{
+              pathname: "/",
+            }}
+            className="nav__logo"
+          >
+            <Image src={logo} alt="" className="logo-login" />
+          </Link>
+        </div>
         <form onSubmit={handleLogin}>
           <div className="input-field">
             Email:
@@ -55,6 +68,6 @@ export default function Login() {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }

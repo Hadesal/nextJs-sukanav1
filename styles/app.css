@@ -115,8 +115,14 @@ html {
   scroll-behavior: smooth;
 }
 
+.home-upper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+}
+
 body {
-  margin: var(--header-height) 0 0 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
@@ -339,6 +345,7 @@ input {
   left: 0;
   z-index: var(--z-fixed);
   background-color: transparent;
+  margin-bottom: 10rem;
 }
 
 /*=============== NAV ===============*/
@@ -623,12 +630,6 @@ input {
 .about__img-two:hover {
   transform: var(--img-scale);
 }
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto;
-}
 
 label {
   display: flex;
@@ -640,11 +641,22 @@ label {
 /* -----------------Form --------------------*/
 
 .fields {
-  width: 30rem;
+  padding-inline: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-container {
+  display: grid;
+  width: 25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7rem;
 }
 
 .input-field {
   display: flex;
+  width: 30rem;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
@@ -681,7 +693,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-.btn{
+.btn {
   background-color: rgb(184, 156, 0);
   color: black;
   padding: 10px 20px;
@@ -691,13 +703,14 @@ input[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-top: 2rem;
 }
 
 .btn:hover {
   background-color: rgb(117, 84, 0);
 }
 
-.logout{
+.logout {
   background-color: rgb(255, 113, 47);
   color: rgb(255, 255, 255);
   padding: 10px 20px;
@@ -713,24 +726,20 @@ input[type="submit"] {
   background-color: rgb(255, 30, 0);
 }
 
-.center-btn{
-  display: flex;
-  justify-content: center;
-  padding-left: 20rem;
-  align-items: center;
-  padding-bottom: 10rem;
+.center-btn {
+  padding-left: 2rem;
+  padding-block: 1rem;
 }
 
-.header-form{
-  display: flex;
-  justify-content: center;
-  align-self:center;
-  padding-bottom: 2rem;
+.header-form {
+  padding-block: 2rem;
+  padding-inline: 2rem;
 }
 
 /* ----------------immobiles ----------------*/
 
 .card-grid-home {
+  margin-top: 10rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
@@ -803,8 +812,7 @@ input[type="submit"] {
 .btn {
   display: inline-block;
   background-color: #ffd700;
-  color: #fff;
-  padding: 0.5rem 1rem;
+  color: #000000;
   border-radius: 0.25rem;
   border: none;
   cursor: pointer;
@@ -812,7 +820,7 @@ input[type="submit"] {
 }
 
 .btn:hover {
-  opacity: 0.8;
+  background-color: #ad9401;
 }
 
 .btn-outline {
@@ -823,5 +831,25 @@ input[type="submit"] {
 
 .btn-outline:hover {
   background-color: #ffd700;
-  color: #fff;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.add-asset-header {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-login {
+  margin-bottom: -2rem;
+}
+
+.logo-asset {
+  width: 8rem;
 }

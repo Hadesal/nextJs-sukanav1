@@ -17,7 +17,9 @@ export default function Immobile() {
 
   return (
     <>
+
       <NavBar />
+      <div className="home-upper-container">
       <div className="card-grid-home">
         {allImmobile?.map((immobile, index) => {
           return (
@@ -64,6 +66,7 @@ export default function Immobile() {
             </div>
           );
         })}
+      </div>
       </div>
     </>
   );

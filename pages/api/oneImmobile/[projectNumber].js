@@ -8,19 +8,21 @@ const oneImmobile = async (req, res) => {
     await connectMongo();
 
     if (projectNumber) {
-      immobileModel
-        .findOne({
-          projectNumber: projectNumber,
-        })
-        .then((immobile) => {
-          if (immobile) {
-            return res.status(200).json(immobile);
-          } else {
-            return res.json({
-              message: "no Project was found with this Number",
-            });
-          }
+      try {
+        const immobile = await immobileModel.findOne({ projectNumber });
+        if (immobile) {
+          return res.status(200).json(immobile);
+        } else {
+          return res.json({
+            message: "No project was found with this number",
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+          message: "An error occurred while searching for the project",
         });
+      }
     } else {
       return res.json({
         message: "Please make sure you entered a valid projectNumber",
@@ -33,5 +35,4 @@ const oneImmobile = async (req, res) => {
     });
   }
 };
-
 export default cors()(oneImmobile);

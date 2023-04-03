@@ -161,6 +161,9 @@ ul {
   min-height: 520px;
   max-height: 520px;
   border: solid #bc9a00 2px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .card.card-shadow {
@@ -249,7 +252,7 @@ ul {
 }
 
 .btn {
-  --color: #bc9a00;
+  --color: rgb(192, 146, 30);
   background: var(--color);
   color: white;
   border: none;
@@ -261,7 +264,7 @@ ul {
 
 .btn:hover,
 .btn:focus {
-  --color: #d7b002;
+  --color: rgb(226, 175, 44);
 }
 
 .btn.btn-outline {
@@ -353,9 +356,15 @@ input {
   justify-content: space-around;
   align-items: center;
 }
+
+.logo-nav {
+  object-fit: cover;
+  width: 14rem;
+  margin-top: 4rem;
+}
 .nav__logo,
 .nav__toggle {
-  color: gold;
+  color: rgb(192, 146, 30);
 }
 
 .nav__logo {
@@ -412,7 +421,7 @@ input {
 }
 
 .nav__link:hover {
-  color: gold;
+  color: rgb(192, 146, 30);
 }
 
 .nav__close {
@@ -560,7 +569,7 @@ input {
 
 .button:hover {
   background-color: black;
-  color: gold;
+  color: rgb(224, 172, 39);
 }
 
 .button--flex {
@@ -772,9 +781,24 @@ input[type="submit"] {
 }
 
 .margBtn {
+  display: inline-block;
+  background-color: rgb(192, 146, 30);
+  color: #000000;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   margin-top: -1rem;
+  height: 2rem;
+  width: 5rem;
 }
 
+.margBtn:hover {
+  display: inline-block;
+  background-color: rgb(230, 169, 17);
+  color: #000000;
+  transition: all 0.3s ease-in-out;
+}
 /* .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -824,7 +848,7 @@ input[type="submit"] {
 }
 
 .card-h3 {
-  color: gold;
+  color: rgb(192, 146, 30);
   margin-bottom: 1rem;
 }
 .icon {
@@ -905,7 +929,7 @@ input[type="submit"] {
 
 .btn {
   display: inline-block;
-  background-color: #ffd700;
+  background-color: rgb(192, 146, 30);
   color: #000000;
   border-radius: 0.25rem;
   border: none;
@@ -967,11 +991,80 @@ input[type="submit"] {
 }
 
 .select-ctn {
+  position: relative;
+  width: 10rem;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  text-transform: capitalize;
+  color: #fff;
+  background: #292929;
+  text-align: left;
+  padding: 0 15px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.select-ctn::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.select-ctn:hover {
+  background: #222222;
+}
+
+.select-ctn.active {
+  background: #222222;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.options {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.options.active {
+  display: block;
+}
+
+.options .item {
+  color: #fff;
+  text-transform: capitalize;
+  width: 100%;
+  height: 30px;
+  padding: 0 15px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.options .item.active {
+  background: #292929;
+}
+
+/* .select-ctn {
   height: 1.2rem;
   margin-block: 1rem;
   background-color: #000000;
   border: none;
-}
+} */
 
 select,
 option {
@@ -984,24 +1077,26 @@ option {
   align-items: center;
   flex-direction: row;
   width: 10rem;
+  gap: 3rem;
 }
 
 .filter-elements {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
 
 .filter-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 5rem;
 }
 
 .filter-span {
   font-size: 1.2rem;
-  color: gold;
+  color: rgb(192, 146, 30);
 }
 
 .immo-details-box {
@@ -1023,17 +1118,27 @@ option {
 }
 
 .details-container {
+  width: 50rem;
+  height: 55rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
   gap: 0.8rem;
-  margin-top: 10rem;
-  margin-inline: 20rem;
-  padding-inline: 4rem;
-  padding-block-end: 5rem;
-  padding-block-start: 1rem;
-  background-color: black;
+  margin-top: 8rem;
+  margin-inline: 30rem;
+  padding-inline: 2rem;
+  margin-block-end: 4rem;
+  font-size: 15px;
+  background-color: #1a1a1a;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .slide_details {
@@ -1044,13 +1149,20 @@ option {
 }
 
 .immo_details_field {
-  padding-inline: 5rem;
   display: flex;
+  text-align: justify;
+  width: 20rem;
+  gap: 2rem;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .desrip-details {
-  padding-inline: 5rem;
   text-align: justify;
   margin-top: 2rem;
+}
+
+.det-header {
+  color: rgb(192, 146, 30);
+  margin-bottom: 1rem;
 }

@@ -1,5 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "../styles/ContactUs.module.css";
+import Image from "next/image";
+import logo from "../public/assets/logo.png";
 
 function ContactUs() {
   const initialValues = {
@@ -45,9 +47,17 @@ function ContactUs() {
   };
 
   return (
+    
     <div className={styles.container}>
+            <Image src={logo} alt="" className={styles.contactLogo} />
+
       <div className={styles.card}>
-        <h2 className={styles.title}>Contact Us</h2>
+        <h2 className={styles.title}>
+          <div className={styles.contactHeader}>
+          <h4>Contact Us</h4>
+
+          </div>
+        </h2>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}

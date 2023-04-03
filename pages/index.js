@@ -94,6 +94,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <span className="License">Powered By A&H</span>
     </>
   );
 }

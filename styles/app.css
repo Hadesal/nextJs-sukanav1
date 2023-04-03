@@ -105,6 +105,14 @@ body.dark-theme {
 }
 
 /*=============== BASE ===============*/
+
+.License{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: small;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -120,6 +128,10 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+}
+
+body::-webkit-scrollbar{
+  display: none;
 }
 
 h1,

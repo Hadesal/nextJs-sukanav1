@@ -168,6 +168,7 @@ export default function Immobile() {
       <div className="home-upper-container">
         <div className="card-grid-home">{memorizedImmobile}</div>
       </div>
+      <span className="License">Powered By A&H</span>
     </>
   );
 }

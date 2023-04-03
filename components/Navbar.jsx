@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Link from "next/link";
-
+import Image from "next/image";
+import logo from "../public/assets/houses/logo.png"
 const NavBar = () => (
   <>
     <header className="header" id="header">
@@ -11,7 +12,8 @@ const NavBar = () => (
                 }}
                 className="nav__logo"
               >
-                SUKANA
+                 <Image src={logo} alt="" className="logo-nav" />
+                {/* SUKANA */}
               </Link>
         <div className="nav__menu" id="nav-menu">
           <ul className="nav__list">

@@ -43,73 +43,82 @@ export default function Immobiledetails() {
               className={"slide_details"}
             />
           </>
-          <div className="immo_details_field">
-            <span>Project Number:</span>
-            {immobile.projectNumber}
-          </div>
+          <div className="details-grid">
+            <div className="details-grid-left">
+            <h2 className="det-header">Info </h2>
+              <div className="immo_details_field">
+                
+                <span>Project Number:</span>
+                {immobile.projectNumber}
+              </div>
 
-          <div className="immo_details_field">
-            <span>Address:</span>
-            {immobile.address}
-          </div>
+              <div className="immo_details_field">
+                <span>Address:</span>
+                {immobile.address}
+              </div>
 
-          <div className="immo_details_field">
-            <span>City: </span>
-            {immobile.city}
-          </div>
-          <div className="immo_details_field">
-            <span>Completion of Build:</span>{" "}
-            {new Date(immobile.completionOfBuild).toLocaleDateString()}
-          </div>
+              <div className="immo_details_field">
+                <span>City: </span>
+                {immobile.city}
+              </div>
+              <div className="immo_details_field">
+                <span>Completion of Build:</span>{" "}
+                {new Date(immobile.completionOfBuild).toLocaleDateString()}
+              </div>
 
-          <div className="immo_details_field">
-            <span>Living Space:</span>
-            {immobile.livingSpace}
-          </div>
+              <div className="immo_details_field">
+                <span>Living Space:</span>
+                {immobile.livingSpace}
+              </div>
 
-          <div className="immo_details_field">
-            <span>Location:</span>
-            {immobile.location}
-          </div>
+              <div className="immo_details_field">
+                <span>Location:</span>
+                {immobile.location}
+              </div>
 
-          <div className="immo_details_field">
-            <span>Price:</span>
-            {immobile.price}
-          </div>
+              <div className="immo_details_field">
+                <span>Price:</span>
+                {immobile.price}
+              </div>
 
-          <div className="immo_details_field">
-            <span>Immobil Type:</span> {immobile.immobileType}
+              <div className="immo_details_field">
+                <span>Immobil Type:</span> {immobile.immobileType}
+              </div>
+              <div className="immo_details_field">
+                <span>Rooms:</span> {immobile.rooms}
+              </div>
+              <div className="immo_details_field">
+                {" "}
+                <span>Zip: </span>
+                {immobile.zib}
+              </div>
+            </div>
+            <div className="details-grid-right">
+            <div className="immo_details_field">
+              <h2 className="det-header">Details </h2>
+            </div>
+            <ul>
+              <li className="immo_details_field">
+                <span>Bedrooms:</span>
+                {immobile?.details?.bedRooms}
+              </li>
+              <li className="immo_details_field">
+                {" "}
+                <span>Bathrooms: </span> {immobile?.details?.bathRooms}
+              </li>
+              <li className="immo_details_field">
+                {" "}
+                <span>Size: </span> {immobile?.details?.size}
+              </li>
+
+              <li className="desrip-details">
+                {" "}
+                <span>Description: </span>
+                {immobile?.details?.description}
+              </li>
+            </ul>
+            </div>
           </div>
-          <div className="immo_details_field">
-            <span>Rooms:</span> {immobile.rooms}
-          </div>
-          <div className="immo_details_field">
-            {" "}
-            <span>Zip: </span>
-            {immobile.zib}
-          </div>
-          <div className="immo_details_field">
-            <span>Details: </span>
-          </div>
-          <ul>
-            <li className="immo_details_field">
-              <span>Bedrooms:</span>
-              {immobile?.details?.bedRooms}
-            </li>
-            <li className="immo_details_field">
-              {" "}
-              <span>Bathrooms: </span> {immobile?.details?.bathRooms}
-            </li>
-            <li className="immo_details_field">
-              {" "}
-              <span>Size: </span> {immobile?.details?.size}
-            </li>
-            <li className="desrip-details">
-              {" "}
-              <span>Description: </span>
-              {immobile?.details?.description}
-            </li>
-          </ul>
         </div>
       )}
 

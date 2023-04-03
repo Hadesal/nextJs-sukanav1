@@ -10,44 +10,43 @@ import { ImmobileContext } from "@/contexts/ImmobileContext";
 import { useEffect, useState } from "react";
 import { getImmobile } from "@/utils/fechtMethods";
 import FilterComponent from "../components/FilterComponent";
+import ContactUs from "./contactUs";
 
 export default function Immobile() {
   const { allImmobile } = useContext(ImmobileContext);
-  const [filtAllImmobile, setFilAllImmobile] = useState([{}]);
   const [currency, setCurrency] = useState("en-US"); //
-  const [location, setLocation] = useState(); //
+  const [location, setLocation] = useState(); 
+  const [filteredImmobile, setFilteredImmobile] = useState(allImmobile);
+  const [selectedLocation, setSelectedLocation] = useState("");
+
 
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value);
   };
 
-  useEffect(() => {
-    getImmobile().then((data) => setFilAllImmobile(data));
-  }, []);
-
   const handleLocationChange = (e) => {
     const selectedLocation = e.target.value;
-
+  
     const filteredImmobile = allImmobile.filter((immobile) =>
       selectedLocation ? immobile.location === selectedLocation : true
     );
-
-    setFilAllImmobile(filteredImmobile);
-    setLocation(selectedLocation);
+  
+    setFilteredImmobile(filteredImmobile);
   };
 
   const currencyOption = currency === "de-AT" ? "EUR" : "USD";
 
   
-    const handleReload = () => {
-      window.location.reload();
-    };
+  const handleReload = () => {
+    setSelectedLocation("");
+    window.location.reload();
+  };
 
-  const countryOptions = [];
-  const locations = new Set(allImmobile?.map((immobile) => immobile.location));
-  locations?.forEach((item) => {
-    countryOptions.push({ label: item, value: item });
-  });
+    const countryOptions = [{ label: "All", value: "" }];
+    const locations = new Set(allImmobile?.map((immobile) => immobile.location));
+    locations?.forEach((item) => {
+      countryOptions.push({ label: item, value: item });
+    });
 
   const currencyOptions = [
     { label: "USD", value: "en-US" },
@@ -60,14 +59,12 @@ export default function Immobile() {
     currency: currencyOption,
   });
 
-  console.log(allImmobile);
-  console.log(locations);
-
+ 
 
   const memorizedImmobile = useMemo(() => {
     return (
       <>
-        {allImmobile?.map((immobile, index) => {
+        {filteredImmobile?.map((immobile, index) => {
             return (
               <div key={index} className="card card-shadow">
                 <div key={index} className="card-header card-image">
@@ -113,7 +110,12 @@ export default function Immobile() {
                   >
                     <button className="btn btn-Size">Details</button>
                   </Link>
-                  <Link href={"/#about"}>
+                  <Link
+                    href={{
+                      pathname: "/contactUs",
+                      query: ContactUs,
+                    }}
+                  >
                     <button className="btn btn-outline btn-Size">
                       Contact
                     </button>
@@ -124,14 +126,14 @@ export default function Immobile() {
           })}
       </>
     );
-  }, [allImmobile]);
+  }, [filteredImmobile, format]);
 
   return (
     <>
       <NavBar />
       <div className="filter-container">
         <div className="filter-header">
-        <button className="btn margBtn" onClick={handleReload}>Reset</button>
+        <button className="margBtn" onClick={handleReload}>Reset</button>
 
           <div className="filter-elements">
             
@@ -147,7 +149,7 @@ export default function Immobile() {
               onChange={handleLocationChange}
             />
            
-            <div className="filter-combo">
+            {/* <div className="filter-combo">
               <label>
                 {" "}
                 Price:
@@ -159,13 +161,14 @@ export default function Immobile() {
                   <option value="$200+">$200+</option>
                 </select>
               </label>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
       <div className="home-upper-container">
         <div className="card-grid-home">{memorizedImmobile}</div>
       </div>
+      <span className="License">Powered By A&H</span>
     </>
   );
 }

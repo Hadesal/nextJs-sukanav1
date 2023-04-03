@@ -106,7 +106,7 @@ body.dark-theme {
 
 /*=============== BASE ===============*/
 
-.License{
+.License {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,7 +130,7 @@ body {
   color: var(--text-color);
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
@@ -1117,7 +1117,7 @@ option {
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  font-size: 5px;
+  font-size: 15px;
   text-align: justify;
   gap: 1rem;
 }

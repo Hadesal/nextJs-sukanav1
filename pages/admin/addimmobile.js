@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import logo from "../../public/assets/logo.png";
 import { signOut, useSession } from "next-auth/react";
-import { Link } from "react-router-dom";
 
 export default function AddNewImmobile() {
   const router = useRouter();

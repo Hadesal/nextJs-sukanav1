@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "AIzaSyDqP2miVcDdF7kPrk087JFGHHtXQlZIj60",
   authDomain: "sukana-572af.firebaseapp.com",
-  projectId: process.env.PROJECT_ID,
+  projectId: "sukana-572af",
   storageBucket: "sukana-572af.appspot.com",
   messagingSenderId: "866650692120",
-  appId: process.env.APPID,
+  appId: "1:866650692120:web:35b84603c6fd75db43c16d",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

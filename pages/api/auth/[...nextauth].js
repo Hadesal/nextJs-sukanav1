@@ -1,30 +1,49 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import { adminLogin } from "@/utils/fechtMethods";
+import { comparePassword } from "@/utils/hashPassword";
+import userModel from "@/models/userModel";
+import { connectMongo } from "@/utils/connectMongo";
 import NextAuth from "next-auth";
 
 export const nextAuthAdmin = {
   providers: [
     CredentialsProvider({
-      type: "credentials",
+      name: "Credentials",
       credentials: {
-        username: { label: "Email", type: "text" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        const response = await adminLogin(credentials);
-        const isAdmin = response.isAdmin;
-        if (!isAdmin || isAdmin === undefined) {
-          throw Error(response.message);
+      async authorize(credentials) {
+        await connectMongo(); // Connect to MongoDB
+
+        const { email, password } = credentials;
+
+        const user = await userModel.findOne({ email });
+
+        if (!user) {
+          throw new Error("User not found");
         }
-        return isAdmin;
+
+        const isValidPassword = await comparePassword(password, user.password);
+
+        if (!isValidPassword) {
+          throw new Error("Invalid password");
+        }
+
+        return { email: user.email }; // Return the user's email to create a session
       },
     }),
   ],
   pages: {
     signIn: "/admin/login",
   },
-  session: { strategy: "jwt" },
-  secret: process.env.SECRET,
+  session: {
+    jwt: true,
+    maxAge: 2 * 24 * 60 * 60, // 2 days
+  },
+  jwt: {
+    secret: process.env.SECRET,
+  },
   callbacks: {},
 };
+
 export default NextAuth(nextAuthAdmin);

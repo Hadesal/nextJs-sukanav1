@@ -350,99 +350,11 @@ input {
   gap: 1.5rem;
 }
 
-/*=============== HEADER ===============*/
-.header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-fixed);
-  background-color: transparent;
-  margin-bottom: 10rem;
-}
-
-/*=============== NAV ===============*/
-.nav {
-  height: var(--header-height);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.logo-nav {
-  object-fit: cover;
-  width: 14rem;
-  margin-top: 4rem;
-}
-.nav__logo,
-.nav__toggle {
-  color: rgb(192, 146, 30);
-}
-
-.nav__logo {
-  margin-top: 1rem;
-  font-size: 3rem;
-  letter-spacing: 1rem;
-  font-weight: 200;
-  margin-top: 2rem;
-}
-
-.nav__toggle {
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: var(--white-color);
-}
-
-.nav__menu {
-  position: relative;
-}
-
 .contact {
   padding-top: 5rem;
   padding-left: 5rem;
   right: 1rem;
   width: 40rem;
-}
-
-@media screen and (max-width: 767px) {
-  .nav__menu {
-    position: fixed;
-    background-color: var(--body-color);
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100%;
-    box-shadow: -1px 0 4px rgba(14, 55, 63, 0.15);
-    padding: 3rem;
-    transition: 0.4s;
-  }
-}
-
-.nav__list {
-  display: flex;
-  flex-direction: row;
-  gap: 5.5rem;
-  margin-top: 2rem;
-}
-
-.nav__link {
-  color: var(--white-color);
-  font-size: 1.5rem;
-  font-weight: var(--font-semi-bold);
-  text-transform: uppercase;
-}
-
-.nav__link:hover {
-  color: rgb(192, 146, 30);
-}
-
-.nav__close {
-  position: absolute;
-  top: 0.75rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  color: var(--title-color);
-  cursor: pointer;
 }
 
 /* show menu */
@@ -1154,12 +1066,21 @@ option {
 }
 
 .slide_details {
-  object-fit: cover;
+  object-fit: scale-down;
   aspect-ratio: 16/9;
   width: 50vw;
-  height: 40vh;
 }
 
+.modal_image {
+  height: auto;
+  max-width: fit-content;
+}
+.modal_container .ant-modal-content {
+  height: auto;
+  width: 320%;
+  left: -60%;
+  inset-inline-start: 1;
+}
 .immo_details_field {
   display: flex;
   text-align: justify;

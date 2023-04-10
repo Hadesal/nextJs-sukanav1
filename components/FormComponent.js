@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import { postImmobile } from "@/utils/fechtMethods";
+import React, { useEffect, useState } from "react";
+import { storage } from "@/utils/firebase";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { addImmobile } from "@/utils/immobiles";
+
 const ImmobileForm = () => {
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [immobileState, setImmobileState] = useState({
     projectNumber: 0,
     immobileType: "",
@@ -22,51 +26,69 @@ const ImmobileForm = () => {
     zib: 0,
   });
 
-  const handleFileUpload = (event) => {
-    const fileArray = Array.from(event.target.files);
-    const readerArray = fileArray.map((file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
+  const handleImageUpload = async (event) => {
+    setLoading(true);
+    const uploadedImages = Array.from(event.target.files);
+    const newImages = [];
+
+    try {
+      event.target.disable = true;
+
+      uploadedImages.map(async (file) => {
+        const imageName = `${immobileState.projectNumber}-${file.name}`;
+        const imageRef = ref(storage, `images/${imageName}`);
+        const snapshot = await uploadBytes(imageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        newImages.push(downloadURL);
       });
-    });
-    Promise.all(readerArray).then((imagesArray) => {
+
       setImmobileState({
         ...immobileState,
-        images: [...immobileState.images, ...imagesArray],
+        images: newImages,
       });
-    });
+      setMessage("Images uploaded successfully");
+    } catch (error) {
+      setMessage("Error uploading images. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const immobileObject = { immobileObject: immobileState };
-    await postImmobile(immobileObject).then((message) =>
-      setMessage(message.message)
-    );
-    setImmobileState({
-      projectNumber: 0,
-      immobileType: "",
-      details: {
-        bedRooms: 0,
-        bathRooms: 0,
-        size: 0,
-        description: "",
-      },
-      completionOfBuild: "",
-      livingSpace: "",
-      price: 0,
-      location: "",
-      city: "",
-      address: "",
-      rooms: 0,
-      images: [],
-      zib: 0,
-    });
+    if (immobileState.images.length < 1) {
+      setMessage("Please choose at least one image to upload.");
+      return;
+    }
+    setLoading(true);
+    try {
+      await addImmobile(immobileState);
+      setMessage("Immobile created successfully");
+      setImmobileState({
+        projectNumber: 0,
+        immobileType: "",
+        details: {
+          bedRooms: 0,
+          bathRooms: 0,
+          size: 0,
+          description: "",
+        },
+        completionOfBuild: "",
+        livingSpace: "",
+        price: 0,
+        location: "",
+        city: "",
+        address: "",
+        rooms: 0,
+        images: [],
+        zib: 0,
+      });
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -118,7 +140,7 @@ const ImmobileForm = () => {
                     },
                   })
                 }
-              />{" "}
+              />
             </div>
 
             <div className="input-field">
@@ -189,6 +211,7 @@ const ImmobileForm = () => {
             </button>
             {/* TODO:STYLE MESSAGE AND DELETE BUTTON PLEASE */}
             <div>{message ? <span>{message}</span> : ""}</div>
+            {loading ? <p>Loading...</p> : null}
           </div>
           <div className="right-input-container">
             <div className="input-field">
@@ -273,7 +296,7 @@ const ImmobileForm = () => {
                 id="images"
                 name="images"
                 multiple
-                onChange={handleFileUpload}
+                onChange={handleImageUpload}
               />
             </div>
 

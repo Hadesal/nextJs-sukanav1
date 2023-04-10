@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from "react";
+import React from "react";
 import ImageSlider from "@/components/ImageSilider";
 import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilBedDouble } from "@iconscout/react-unicons";
@@ -6,25 +6,30 @@ import { UilBath } from "@iconscout/react-unicons";
 import { UilArrowResizeDiagonal } from "@iconscout/react-unicons";
 import Link from "next/link";
 import NavBar from "@/components/Navbar";
-import { ImmobileContext } from "@/contexts/ImmobileContext";
 import { useEffect, useState } from "react";
-import { getImmobile } from "@/utils/fechtMethods";
 import FilterComponent from "../components/FilterComponent";
 import ContactUs from "./contactUs";
+import { getImmobiles } from "@/utils/immobiles";
 
 export default function Immobile() {
-  const { allImmobile } = useContext(ImmobileContext);
+  const [allImmobile, setAllImmobile] = useState([{}]);
   const [currency, setCurrency] = useState("en-US"); //
-  const [location, setLocation] = useState();
-  const [filteredImmobile, setFilteredImmobile] = useState(allImmobile);
+  const [filteredImmobile, setFilteredImmobile] = useState();
   const [selectedLocation, setSelectedLocation] = useState("");
+
+  useEffect(() => {
+    getImmobiles().then((immobile) => {
+      setFilteredImmobile(immobile);
+      setAllImmobile(immobile);
+    });
+  }, []);
 
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value);
   };
 
   const handleLocationChange = (e) => {
-    const selectedLocation = e.target.value;
+    setSelectedLocation(e.target.value);
 
     const filteredImmobile = allImmobile.filter((immobile) =>
       selectedLocation ? immobile.location === selectedLocation : true
@@ -57,115 +62,104 @@ export default function Immobile() {
     currency: currencyOption,
   });
 
-  const memorizedImmobile = useMemo(() => {
-    return (
-      <>
-        {filteredImmobile?.map((immobile, index) => {
-          return (
-            <div key={index} className="card card-shadow">
-              <div key={index} className="card-header card-image">
-                <div className="image-header">
-                  <div>
-                    <ImageSlider images={immobile?.images} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="card-details">
-                <div className="street-container">
-                  <p className="icon">{<UilLocationPoint />} </p>
-                  {immobile.location}
-                </div>
-                <div className="price">{format(immobile.price)}</div>
-              </div>
-              <div className="card-body">
-                <div>{immobile.title}</div>
-                <h3 className="card-h3"> {immobile.address}</h3>
-                <div className="immo-details-box">
-                  <div>
-                    <p>{immobile?.details?.description.slice(0, 80)}...</p>
-                  </div>
-                  <div> Size: {immobile?.details?.size} m²</div>
-                </div>
-                <div className="card-rooms">
-                  <p className="card-rooms-icons">
-                    <UilArrowResizeDiagonal /> {immobile?.details?.size}
-                  </p>
-                  <p className="card-rooms-icons">
-                    <UilBedDouble /> {immobile?.details?.bedRooms}
-                  </p>
-                  <p className="card-rooms-icons">
-                    <UilBath /> {immobile?.details?.bathRooms}
-                  </p>
-                </div>
-              </div>
-              <div className="card-footer">
-                <Link
-                  href={{
-                    pathname: "/immobiledetails",
-                    query: immobile.projectNumber,
-                  }}
-                >
-                  <button className="btn btn-Size">Details</button>
-                </Link>
-                <Link
-                  href={{
-                    pathname: "/contactUs",
-                    query: ContactUs,
-                  }}
-                >
-                  <button className="btn btn-outline btn-Size">Contact</button>
-                </Link>
-              </div>
-            </div>
-          );
-        })}
-      </>
-    );
-  }, [filteredImmobile, format]);
-
   return (
     <>
       <NavBar />
-      <div className="filter-container">
-        <div className="filter-header">
-          <button className="margBtn" onClick={handleReload}>
-            Reset
-          </button>
+      {!filteredImmobile ? (
+        <div>....is Loading</div>
+      ) : (
+        <>
+          <div className="filter-container">
+            <div className="filter-header">
+              <button className="margBtn" onClick={handleReload}>
+                Reset
+              </button>
 
-          <div className="filter-elements">
-            <FilterComponent
-              label="Currency "
-              options={currencyOptions}
-              onChange={handleCurrencyChange}
-              value={currency}
-            />
-            <FilterComponent
-              label="Location"
-              options={countryOptions}
-              onChange={handleLocationChange}
-            />
-
-            {/* <div className="filter-combo">
-              <label>
-                {" "}
-                Price:
-                <select className="select-ctn">
-                  <option value="">Select price range</option>
-                  <option value="$0-$50">$0 - $50</option>
-                  <option value="$50-$100">$50 - $100</option>
-                  <option value="$100-$200">$100 - $200</option>
-                  <option value="$200+">$200+</option>
-                </select>
-              </label>
-            </div> */}
+              <div className="filter-elements">
+                <FilterComponent
+                  label="Currency"
+                  options={currencyOptions}
+                  onChange={handleCurrencyChange}
+                  value={currency}
+                />
+                <FilterComponent
+                  label="Location"
+                  options={countryOptions}
+                  onChange={handleLocationChange}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="home-upper-container">
-        <div className="card-grid-home">{memorizedImmobile}</div>
-      </div>
-      <span className="License">Powered By A&H</span>
+          <div className="home-upper-container">
+            <div className="card-grid-home">
+              {filteredImmobile?.map((immobile, index) => {
+                return (
+                  <div key={index} className="card card-shadow">
+                    <div key={index} className="card-header card-image">
+                      <div className="image-header">
+                        <div>
+                          <ImageSlider images={immobile?.images} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="card-details">
+                      <div className="street-container">
+                        <p className="icon">{<UilLocationPoint />} </p>
+                        {immobile.location}
+                      </div>
+                      <div className="price">{format(immobile.price)}</div>
+                    </div>
+                    <div className="card-body">
+                      <div>{immobile.title}</div>
+                      <h3 className="card-h3"> {immobile.address}</h3>
+                      <div className="immo-details-box">
+                        <div>
+                          <p>
+                            {immobile?.details?.description.slice(0, 80)}...
+                          </p>
+                        </div>
+                        <div> Size: {immobile?.details?.size} m²</div>
+                      </div>
+                      <div className="card-rooms">
+                        <p className="card-rooms-icons">
+                          <UilArrowResizeDiagonal /> {immobile?.details?.size}
+                        </p>
+                        <p className="card-rooms-icons">
+                          <UilBedDouble /> {immobile?.details?.bedRooms}
+                        </p>
+                        <p className="card-rooms-icons">
+                          <UilBath /> {immobile?.details?.bathRooms}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <Link
+                        href={{
+                          pathname: "/immobiledetails",
+                          query: immobile.projectNumber,
+                        }}
+                      >
+                        <button className="btn btn-Size">Details</button>
+                      </Link>
+                      <Link
+                        href={{
+                          pathname: "/contactUs",
+                          query: ContactUs,
+                        }}
+                      >
+                        <button className="btn btn-outline btn-Size">
+                          Contact
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

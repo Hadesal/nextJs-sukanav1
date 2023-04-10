@@ -1,13 +1,11 @@
 import "../styles/app.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import { SessionProvider } from "next-auth/react";
-import { ImmobileProvider } from "@/contexts/ImmobileContext";
 
 export default function App({ Component, pageProps }) {
   return (
-    <ImmobileProvider>
-      <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
-      </SessionProvider>
-    </ImmobileProvider>
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   );
 }

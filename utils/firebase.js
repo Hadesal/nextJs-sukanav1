@@ -4,12 +4,11 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "sukanav1.firebaseapp.com",
+  authDomain: "sukana-572af.firebaseapp.com",
   projectId: process.env.PROJECT_ID,
-  storageBucket: "sukanav1.appspot.com",
-  messagingSenderId: "670053495123",
+  storageBucket: "sukana-572af.appspot.com",
+  messagingSenderId: "866650692120",
   appId: process.env.APPID,
-  measurementId: "G-RWS6HMG3DS",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

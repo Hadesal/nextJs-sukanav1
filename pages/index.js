@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import house2 from "../public/assets/houses/house_2.jpg";
 import house3 from "../public/assets/houses/house_3.jpg";
-import house4 from "../public/assets/houses/house_4.png";
-import house5 from "../public/assets/houses/house_5.png";
+import house4 from "../public/assets/houses/house_4.jpg";
+import house5 from "../public/assets/houses/house_1.jpg";
 import house6 from "../public/assets/houses/house_6.png";
 
 import card from "../public/assets/card.jpg";

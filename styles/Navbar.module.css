@@ -1,0 +1,150 @@
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: transparent;
+  margin-bottom: 10rem;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 120rem;
+  width: 100%;
+}
+
+.logo-nav {
+  object-fit: cover;
+  width: 14rem;
+  margin-top: 4rem;
+}
+
+.nav__logo {
+  margin-top: 1rem;
+  font-size: 3rem;
+  letter-spacing: 1rem;
+  font-weight: 200;
+  margin-top: 2rem;
+}
+
+.nav__toggle {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--white-color);
+  display: none;
+}
+
+.nav__menu {
+  position: relative;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+  gap: 5.5rem;
+  margin-top: 2rem;
+}
+
+.nav__link {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+}
+
+.nav__link:hover {
+  color: rgb(192, 146, 30);
+}
+
+.nav__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: var(--title-color);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .nav {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+  }
+
+  .logo-nav {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    display: none;
+  }
+
+  .nav__link {
+    font-size: 1.2rem;
+  }
+
+  .nav__menu {
+    position: fixed;
+    background-color: var(--body-color);
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    box-shadow: -1px 0 4px rgba(14, 55, 63, 0.15);
+    padding: 3rem;
+    transition: 0.4s;
+  }
+
+  .nav__link:hover {
+    color: rgb(192, 146, 30);
+  }
+
+  .nav__close {
+    color: var(--white-color);
+  }
+
+  .nav__menu_active {
+    right: 0;
+  }
+}
+
+.nav__menu_active .nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.nav__menu_active .nav__link {
+  color: var(--white-color);
+  font-size: 1.2rem;
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+}
+
+.nav__menu_active .nav__link:hover {
+  color: rgb(192, 146, 30);
+}
+
+.nav__menu_active .nav__close {
+  color: var(--white-color);
+}

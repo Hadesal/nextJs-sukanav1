@@ -5,6 +5,9 @@ FROM node:19.7-alpine
 # Set environment variables
 ENV MONGO_URI="mongodb+srv://HadiAlhlow:vZ7lSHAdZvkaIbNd@cluster0.4gvxsk0.mongodb.net/sukana"
 ENV SECRET="HOWYOUDOIN"
+ENV FIREBASE_API_KEY="AIzaSyBOY3PcrRTpz4PuPHECj_PMQhnmLghcvNs"
+ENV APPID="1:670053495123:web:75e103fa4f68d18501f1a6"
+ENV PROJECT_ID="sukanav1"
 
 # Create and change to the app directory.
 WORKDIR /usr/app

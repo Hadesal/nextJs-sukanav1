@@ -3,33 +3,29 @@ import { getOneImmobile } from "@/utils/fechtMethods";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ImageSlider from "@/components/ImageSilider";
+import { findDocumentByProjectNumber } from "@/utils/immobiles";
+
 export default function Immobiledetails() {
   const router = useRouter();
   const projectNumber = Object.keys(router.query).join("");
   const [immobile, setImmobile] = useState({});
-  const [detailsOfImmobile, setDetailsOfImmobile] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    getOneImmobile(projectNumber).then((res) => {
-      if (!res.message) {
-        setImmobile(res);
-        setDetailsOfImmobile(res.details);
-      } else {
-        setErrorMessage(res.message);
-      }
-    });
-    console.log(projectNumber);
-  }, [projectNumber]);
+    findDocumentByProjectNumber(projectNumber)
+      .then((immobile) => {
+        setImmobile(immobile[0]);
+      })
+      .catch((e) => setErrorMessage(e));
+  }, [immobile, projectNumber]);
 
   {
-    new Date(immobile.completionOfBuild).toLocaleDateString("en-US", {
+    new Date(immobile?.completionOfBuild).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
   }
-  console.log(immobile);
   return (
     <>
       <NavBar />
@@ -45,9 +41,8 @@ export default function Immobiledetails() {
           </>
           <div className="details-grid">
             <div className="details-grid-left">
-            <h2 className="det-header">Info </h2>
+              <h2 className="det-header">Info </h2>
               <div className="immo_details_field">
-                
                 <span>Project Number:</span>
                 {immobile.projectNumber}
               </div>
@@ -94,29 +89,29 @@ export default function Immobiledetails() {
               </div>
             </div>
             <div className="details-grid-right">
-            <div className="immo_details_field">
-              <h2 className="det-header">Details </h2>
-            </div>
-            <ul>
-              <li className="immo_details_field">
-                <span>Bedrooms:</span>
-                {immobile?.details?.bedRooms}
-              </li>
-              <li className="immo_details_field">
-                {" "}
-                <span>Bathrooms: </span> {immobile?.details?.bathRooms}
-              </li>
-              <li className="immo_details_field">
-                {" "}
-                <span>Size: </span> {immobile?.details?.size}
-              </li>
+              <div className="immo_details_field">
+                <h2 className="det-header">Details </h2>
+              </div>
+              <ul>
+                <li className="immo_details_field">
+                  <span>Bedrooms:</span>
+                  {immobile?.details?.bedRooms}
+                </li>
+                <li className="immo_details_field">
+                  {" "}
+                  <span>Bathrooms: </span> {immobile?.details?.bathRooms}
+                </li>
+                <li className="immo_details_field">
+                  {" "}
+                  <span>Size: </span> {immobile?.details?.size}
+                </li>
 
-              <li className="desrip-details">
-                {" "}
-                <span>Description: </span>
-                {immobile?.details?.description}
-              </li>
-            </ul>
+                <li className="desrip-details">
+                  {" "}
+                  <span>Description: </span>
+                  {immobile?.details?.description}
+                </li>
+              </ul>
             </div>
           </div>
         </div>

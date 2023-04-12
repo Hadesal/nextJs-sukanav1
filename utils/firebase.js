@@ -3,12 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: "AIzaSyDqP2miVcDdF7kPrk087JFGHHtXQlZIj60",
-  authDomain: "sukana-572af.firebaseapp.com",
-  projectId: "sukana-572af",
-  storageBucket: "sukana-572af.appspot.com",
-  messagingSenderId: "866650692120",
-  appId: "1:866650692120:web:35b84603c6fd75db43c16d",
+  apiKey: "AIzaSyA3zdnw1iq3lDbIdCNwHvWp_iL6qb0spBM",
+  authDomain: "sukana-8b39e.firebaseapp.com",
+  projectId: "sukana-8b39e",
+  storageBucket: "sukana-8b39e.appspot.com",
+  messagingSenderId: "608838518175",
+  appId: "1:608838518175:web:6323796b274ee671be29aa",
+  measurementId: "G-RDNPQGW8KJ",
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
